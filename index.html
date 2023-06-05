@@ -103,7 +103,6 @@
       }
     }
     let form = document.querySelector('form');
-    
     form.addEventListener('submit', e => {
       e.preventDefault();
       let output = document.querySelector('output');
@@ -113,15 +112,16 @@
       try {
         output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
       } catch (error) {
-        console.log("Oops...error");
         throw new CalculationError("Calculation failed");
       } finally {
         console.count("Calculations Attempted");
       }
     });
-
+    window.addEventListener('error', () => {
+        console.log("Error caught");
+    });
+    
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
-
     // Start your code here
     // You may move this JS to another file if you wish
     errorBtns[0].addEventListener('click', () => {
